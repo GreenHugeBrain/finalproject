@@ -1,0 +1,33 @@
+{% extends 'mainbase.html' %}
+
+{% block containers %}
+<main>
+    <section class="products">
+        <a href="{{ url_for('product') }}">
+            <p>PRODUCTS</p>
+            <img src="static/product icon.png" alt="product">
+        </a>
+    </section>
+    <section class="feedback">
+        <a href="{{ url_for('Feedback') }}">
+            <p>FEEDBACK</p>
+            <img src="static/chat.png" alt="feedback">
+        </a>
+    </section>
+    <div class="special-things">
+        {% if current_user.is_authenticated and current_user.role == 'admin' %}
+        <section class="admin">
+            <a href="{{ url_for('admindashboard') }}">
+                <p>ADMIN DASHBOARD</p>
+                <img src="static/ADMIN.png" alt="ADMIN">
+            </a>
+        </section>
+    {% else %}
+        <section class="not-admin">
+            <p>YOU ARE NOT ADMIN</p>
+            <img src="static/ADMIN.png" alt="ADMIN">
+        </section>
+    {% endif %}
+    </div>
+</main>
+{% endblock %}
